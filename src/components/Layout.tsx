@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { NavLink, Outlet } from 'react-router-dom';
+import { NavLink, Outlet, useNavigate, Link } from 'react-router-dom';
 import {
   LayoutDashboard,
   Users,
@@ -17,6 +17,7 @@ import {
   Heart,
   UserCircle,
 } from 'lucide-react';
+import { useAdminAuth } from '../context/AdminAuthContext';
 
 const navigation = [
   { name: 'Dashboard', href: '/', icon: LayoutDashboard },
@@ -30,6 +31,13 @@ const navigation = [
 
 export default function Layout() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const { currentAdmin, logout } = useAdminAuth();
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    logout();
+    navigate('/admin/login');
+  };
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -87,28 +95,32 @@ export default function Layout() {
 
           {/* Doctor Portal Link */}
           <div className="pt-4 mt-4 border-t border-blue-800">
-            <a
-              href="/login"
+            <Link
+              to="/login"
               onClick={() => setSidebarOpen(false)}
               className="flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium text-blue-200 hover:bg-white/10 hover:text-white transition-all duration-200"
             >
               <UserCircle className="w-5 h-5" />
-              Doctor Login
-            </a>
+              Doctor Portal
+            </Link>
           </div>
         </nav>
 
         {/* Bottom section */}
         <div className="absolute bottom-0 left-0 right-0 p-4 border-t border-blue-800">
           <div className="flex items-center gap-3 px-4 py-3">
-            <div className="w-9 h-9 bg-blue-700 rounded-full flex items-center justify-center text-white font-semibold text-sm">
-              AD
+            <div className="w-9 h-9 bg-indigo-500 rounded-full flex items-center justify-center text-white font-semibold text-sm">
+              {currentAdmin?.avatar || 'AD'}
             </div>
             <div className="flex-1 min-w-0">
-              <p className="text-white text-sm font-medium truncate">Admin User</p>
-              <p className="text-blue-300 text-xs truncate">System Administrator</p>
+              <p className="text-white text-sm font-medium truncate">{currentAdmin?.name || 'Admin User'}</p>
+              <p className="text-blue-300 text-xs truncate">{currentAdmin?.role || 'System Administrator'}</p>
             </div>
-            <button className="text-blue-300 hover:text-white transition-colors">
+            <button
+              onClick={handleLogout}
+              className="text-blue-300 hover:text-white transition-colors"
+              title="Logout"
+            >
               <LogOut className="w-4 h-4" />
             </button>
           </div>
@@ -146,11 +158,22 @@ export default function Layout() {
               </button>
               <div className="hidden sm:block h-8 w-px bg-gray-200"></div>
               <div className="hidden sm:flex items-center gap-2">
-                <div className="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center text-white text-xs font-semibold">
-                  AD
+                <div className="w-8 h-8 bg-indigo-600 rounded-full flex items-center justify-center text-white text-xs font-semibold">
+                  {currentAdmin?.avatar || 'AD'}
                 </div>
-                <span className="text-sm font-medium text-gray-700">Admin</span>
+                <div className="text-right">
+                  <span className="text-sm font-medium text-gray-700 block leading-tight">{currentAdmin?.name || 'Admin'}</span>
+                  <span className="text-xs text-gray-500">{currentAdmin?.role || 'Administrator'}</span>
+                </div>
               </div>
+              <button
+                onClick={handleLogout}
+                className="hidden sm:flex items-center gap-1.5 px-3 py-2 text-sm text-gray-600 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors"
+                title="Logout"
+              >
+                <LogOut className="w-4 h-4" />
+                <span>Logout</span>
+              </button>
             </div>
           </div>
         </header>

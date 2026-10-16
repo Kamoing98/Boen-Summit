@@ -9,6 +9,7 @@ import {
   Clock,
   Stethoscope,
 } from 'lucide-react';
+import { useAdminAuth } from '../context/AdminAuthContext';
 import {
   BarChart,
   Bar,
@@ -84,12 +85,18 @@ const totalBeds = departments.reduce((acc, d) => acc + d.beds, 0);
 const occupiedBeds = departments.reduce((acc, d) => acc + d.occupiedBeds, 0);
 
 export default function Dashboard() {
+  const { currentAdmin } = useAdminAuth();
+
   return (
     <div className="space-y-6">
       {/* Page Header */}
       <div>
-        <h1 className="text-2xl font-bold text-gray-900">Dashboard</h1>
-        <p className="text-gray-500 mt-1">Welcome back! Here's what's happening at Boen Summit Medical Center.</p>
+        <h1 className="text-2xl font-bold text-gray-900">
+          Welcome back, {currentAdmin?.name?.split(' ')[0] || 'Admin'} 👋
+        </h1>
+        <p className="text-gray-500 mt-1">
+          Here's what's happening at Boen Summit Medical Center today.
+        </p>
       </div>
 
       {/* Stats Grid */}
@@ -299,6 +306,9 @@ export default function Dashboard() {
             <h3 className="text-lg font-bold mb-1">Doctor Portal</h3>
             <p className="text-blue-100 text-sm max-w-md">
               Doctors can log in to access patient records, manage appointments, and input consultation data.
+            </p>
+            <p className="text-blue-200 text-xs mt-2">
+              Demo: e.adjei@boensummit.com / doctor123
             </p>
           </div>
           <a

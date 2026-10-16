@@ -182,7 +182,11 @@ export default function Login() {
 
             {/* Demo Login */}
             <div className="mt-6 pt-6 border-t border-gray-100">
-              <p className="text-xs text-gray-500 text-center mb-3">Demo credentials available</p>
+              <p className="text-xs text-gray-500 text-center mb-2">Demo credentials available</p>
+              <div className="bg-blue-50 border border-blue-100 rounded-lg p-3 mb-3 text-xs text-blue-700">
+                <p className="font-medium">Email: e.adjei@boensummit.com</p>
+                <p className="text-blue-600">Password: doctor123</p>
+              </div>
               <button
                 onClick={handleDemoLogin}
                 className="w-full py-2.5 bg-gray-100 text-gray-700 rounded-lg text-sm font-medium hover:bg-gray-200 transition-colors"
@@ -191,14 +195,14 @@ export default function Login() {
               </button>
             </div>
 
-            {/* Back to Admin */}
+            {/* Switch to Admin Login */}
             <div className="mt-4 text-center">
+              <p className="text-xs text-gray-400 mb-2">Are you an administrator?</p>
               <button
-                onClick={() => navigate('/')}
-                className="inline-flex items-center gap-1 text-sm text-gray-500 hover:text-blue-600 transition-colors"
+                onClick={() => navigate('/admin/login')}
+                className="inline-flex items-center gap-1 text-sm text-blue-600 hover:text-blue-700 font-medium"
               >
-                <ArrowLeft className="w-3.5 h-3.5" />
-                Back to Admin Dashboard
+                Go to Admin Login →
               </button>
             </div>
           </div>
