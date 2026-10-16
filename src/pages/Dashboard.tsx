@@ -7,6 +7,7 @@ import {
   TrendingDown,
   Bed,
   Clock,
+  Stethoscope,
 } from 'lucide-react';
 import {
   BarChart,
@@ -286,6 +287,27 @@ export default function Dashboard() {
               <span className="text-sm font-semibold text-gray-900">{totalBeds - occupiedBeds}</span>
             </div>
           </div>
+        </div>
+      </div>
+
+      {/* Doctor Portal Access */}
+      <div className="bg-gradient-to-r from-blue-700 via-blue-600 to-indigo-700 rounded-xl p-6 text-white shadow-lg shadow-blue-600/20 relative overflow-hidden">
+        <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full -translate-y-1/2 translate-x-1/2"></div>
+        <div className="absolute bottom-0 left-0 w-32 h-32 bg-white/5 rounded-full translate-y-1/2 -translate-x-1/2"></div>
+        <div className="relative z-10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+          <div>
+            <h3 className="text-lg font-bold mb-1">Doctor Portal</h3>
+            <p className="text-blue-100 text-sm max-w-md">
+              Doctors can log in to access patient records, manage appointments, and input consultation data.
+            </p>
+          </div>
+          <a
+            href="/login"
+            className="inline-flex items-center gap-2 px-5 py-2.5 bg-white text-blue-700 rounded-lg text-sm font-semibold hover:bg-blue-50 transition-colors shadow-sm whitespace-nowrap"
+          >
+            <Stethoscope className="w-4 h-4" />
+            Doctor Login
+          </a>
         </div>
       </div>
 

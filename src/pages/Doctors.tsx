@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { Search, Filter, Phone, Mail, Award, Clock } from 'lucide-react';
+import { Search, Filter, Phone, Mail, Award, Clock, LogIn } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { doctors } from '../data/mockData';
 
 export default function Doctors() {
@@ -45,9 +46,18 @@ export default function Doctors() {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div>
-        <h1 className="text-2xl font-bold text-gray-900">Doctors</h1>
-        <p className="text-gray-500 mt-1">Manage medical staff and their schedules</p>
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+        <div>
+          <h1 className="text-2xl font-bold text-gray-900">Doctors</h1>
+          <p className="text-gray-500 mt-1">Manage medical staff and their schedules</p>
+        </div>
+        <Link
+          to="/login"
+          className="inline-flex items-center gap-2 px-4 py-2.5 bg-blue-600 text-white rounded-lg text-sm font-medium hover:bg-blue-700 transition-colors shadow-sm"
+        >
+          <LogIn className="w-4 h-4" />
+          Doctor Login
+        </Link>
       </div>
 
       {/* Stats */}

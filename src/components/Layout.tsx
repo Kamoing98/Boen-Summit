@@ -15,6 +15,7 @@ import {
   LogOut,
   Settings,
   Heart,
+  UserCircle,
 } from 'lucide-react';
 
 const navigation = [
@@ -83,6 +84,18 @@ export default function Layout() {
               {item.name}
             </NavLink>
           ))}
+
+          {/* Doctor Portal Link */}
+          <div className="pt-4 mt-4 border-t border-blue-800">
+            <a
+              href="/login"
+              onClick={() => setSidebarOpen(false)}
+              className="flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium text-blue-200 hover:bg-white/10 hover:text-white transition-all duration-200"
+            >
+              <UserCircle className="w-5 h-5" />
+              Doctor Login
+            </a>
+          </div>
         </nav>
 
         {/* Bottom section */}

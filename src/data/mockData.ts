@@ -21,6 +21,34 @@ export interface Doctor {
   experience: number;
   status: 'Available' | 'In Surgery' | 'On Leave';
   avatar: string;
+  password?: string;
+}
+
+export interface PatientRecord {
+  id: string;
+  patientName: string;
+  age: number;
+  gender: 'Male' | 'Female';
+  phone: string;
+  email: string;
+  address: string;
+  bloodGroup: string;
+  dateOfVisit: string;
+  doctorName: string;
+  department: string;
+  complaints: string;
+  diagnosis: string;
+  prescription: string;
+  notes: string;
+  vitals: {
+    temperature: string;
+    bloodPressure: string;
+    heartRate: string;
+    weight: string;
+    height: string;
+  };
+  status: 'Active' | 'Discharged' | 'Follow-up' | 'Critical';
+  createdAt: string;
 }
 
 export interface Appointment {
@@ -76,14 +104,77 @@ export const patients: Patient[] = [
 ];
 
 export const doctors: Doctor[] = [
-  { id: 'D001', name: 'Dr. Emmanuel Adjei', specialty: 'Cardiology', department: 'Cardiology', phone: '+233 24 100 2000', email: 'e.adjei@boensummit.com', experience: 15, status: 'Available', avatar: '👨‍⚕️' },
-  { id: 'D002', name: 'Dr. Grace Owusu', specialty: 'Pediatrics', department: 'Pediatrics', phone: '+233 20 300 4000', email: 'g.owusu@boensummit.com', experience: 12, status: 'Available', avatar: '👩‍⚕️' },
-  { id: 'D003', name: 'Dr. Samuel Tetteh', specialty: 'Orthopedics', department: 'Orthopedics', phone: '+233 27 500 6000', email: 's.tetteh@boensummit.com', experience: 20, status: 'In Surgery', avatar: '👨‍⚕️' },
-  { id: 'D004', name: 'Dr. Felicia Agyemang', specialty: 'Neurology', department: 'Neurology', phone: '+233 55 700 8000', email: 'f.agyemang@boensummit.com', experience: 18, status: 'Available', avatar: '👩‍⚕️' },
-  { id: 'D005', name: 'Dr. Richard Mensah', specialty: 'General Surgery', department: 'Surgery', phone: '+233 24 900 1000', email: 'r.mensah@boensummit.com', experience: 22, status: 'In Surgery', avatar: '👨‍⚕️' },
-  { id: 'D006', name: 'Dr. Patricia Boateng', specialty: 'Dermatology', department: 'Dermatology', phone: '+233 20 200 3000', email: 'p.boateng@boensummit.com', experience: 10, status: 'On Leave', avatar: '👩‍⚕️' },
-  { id: 'D007', name: 'Dr. Michael Asamoah', specialty: 'Radiology', department: 'Radiology', phone: '+233 27 400 5000', email: 'm.asamoah@boensummit.com', experience: 14, status: 'Available', avatar: '👨‍⚕️' },
-  { id: 'D008', name: 'Dr. Linda Appiah', specialty: 'Obstetrics', department: 'Maternity', phone: '+233 55 600 7000', email: 'l.appiah@boensummit.com', experience: 16, status: 'Available', avatar: '👩‍⚕️' },
+  { id: 'D001', name: 'Dr. Emmanuel Adjei', specialty: 'Cardiology', department: 'Cardiology', phone: '+233 24 100 2000', email: 'e.adjei@boensummit.com', experience: 15, status: 'Available', avatar: '👨‍⚕️', password: 'doctor123' },
+  { id: 'D002', name: 'Dr. Grace Owusu', specialty: 'Pediatrics', department: 'Pediatrics', phone: '+233 20 300 4000', email: 'g.owusu@boensummit.com', experience: 12, status: 'Available', avatar: '👩‍⚕️', password: 'doctor123' },
+  { id: 'D003', name: 'Dr. Samuel Tetteh', specialty: 'Orthopedics', department: 'Orthopedics', phone: '+233 27 500 6000', email: 's.tetteh@boensummit.com', experience: 20, status: 'In Surgery', avatar: '👨‍⚕️', password: 'doctor123' },
+  { id: 'D004', name: 'Dr. Felicia Agyemang', specialty: 'Neurology', department: 'Neurology', phone: '+233 55 700 8000', email: 'f.agyemang@boensummit.com', experience: 18, status: 'Available', avatar: '👩‍⚕️', password: 'doctor123' },
+  { id: 'D005', name: 'Dr. Richard Mensah', specialty: 'General Surgery', department: 'Surgery', phone: '+233 24 900 1000', email: 'r.mensah@boensummit.com', experience: 22, status: 'In Surgery', avatar: '👨‍⚕️', password: 'doctor123' },
+  { id: 'D006', name: 'Dr. Patricia Boateng', specialty: 'Dermatology', department: 'Dermatology', phone: '+233 20 200 3000', email: 'p.boateng@boensummit.com', experience: 10, status: 'On Leave', avatar: '👩‍⚕️', password: 'doctor123' },
+  { id: 'D007', name: 'Dr. Michael Asamoah', specialty: 'Radiology', department: 'Radiology', phone: '+233 27 400 5000', email: 'm.asamoah@boensummit.com', experience: 14, status: 'Available', avatar: '👨‍⚕️', password: 'doctor123' },
+  { id: 'D008', name: 'Dr. Linda Appiah', specialty: 'Obstetrics', department: 'Maternity', phone: '+233 55 600 7000', email: 'l.appiah@boensummit.com', experience: 16, status: 'Available', avatar: '👩‍⚕️', password: 'doctor123' },
+];
+
+export const patientRecords: PatientRecord[] = [
+  {
+    id: 'PR001',
+    patientName: 'John Mensah',
+    age: 45,
+    gender: 'Male',
+    phone: '+233 24 123 4567',
+    email: 'john.m@email.com',
+    address: '12 Independence Ave, Accra',
+    bloodGroup: 'O+',
+    dateOfVisit: '2024-12-18',
+    doctorName: 'Dr. Emmanuel Adjei',
+    department: 'Cardiology',
+    complaints: 'Chest pain, shortness of breath, fatigue',
+    diagnosis: 'Hypertension with mild angina',
+    prescription: 'Amlodipine 5mg daily, Aspirin 75mg daily, Lifestyle modifications',
+    notes: 'Patient advised to reduce salt intake and exercise regularly. Follow-up in 2 weeks.',
+    vitals: { temperature: '36.8°C', bloodPressure: '150/95 mmHg', heartRate: '88 bpm', weight: '82 kg', height: '175 cm' },
+    status: 'Follow-up',
+    createdAt: '2024-12-18T09:30:00',
+  },
+  {
+    id: 'PR002',
+    patientName: 'Ama Serwaa',
+    age: 32,
+    gender: 'Female',
+    phone: '+233 20 987 6543',
+    email: 'ama.s@email.com',
+    address: '45 Ring Road, Accra',
+    bloodGroup: 'A+',
+    dateOfVisit: '2024-12-19',
+    doctorName: 'Dr. Grace Owusu',
+    department: 'Pediatrics',
+    complaints: 'Child fever, cough for 3 days, loss of appetite',
+    diagnosis: 'Upper respiratory tract infection',
+    prescription: 'Amoxicillin 250mg twice daily for 7 days, Paracetamol syrup as needed',
+    notes: 'Child responding well to treatment. Mother advised to ensure adequate hydration.',
+    vitals: { temperature: '38.2°C', bloodPressure: '100/65 mmHg', heartRate: '110 bpm', weight: '15 kg', height: '95 cm' },
+    status: 'Active',
+    createdAt: '2024-12-19T10:15:00',
+  },
+  {
+    id: 'PR003',
+    patientName: 'Kwame Asante',
+    age: 58,
+    gender: 'Male',
+    phone: '+233 27 555 1234',
+    email: 'kwame.a@email.com',
+    address: '78 Liberation Rd, Kumasi',
+    bloodGroup: 'B-',
+    dateOfVisit: '2024-12-19',
+    doctorName: 'Dr. Richard Mensah',
+    department: 'Surgery',
+    complaints: 'Severe abdominal pain, nausea, vomiting',
+    diagnosis: 'Acute appendicitis - requires immediate surgery',
+    prescription: 'Pre-operative antibiotics, IV fluids, NPO status',
+    notes: 'Patient prepared for emergency appendectomy. Family informed and consent obtained.',
+    vitals: { temperature: '37.8°C', bloodPressure: '130/85 mmHg', heartRate: '95 bpm', weight: '75 kg', height: '170 cm' },
+    status: 'Critical',
+    createdAt: '2024-12-19T11:00:00',
+  },
 ];
 
 export const appointments: Appointment[] = [
